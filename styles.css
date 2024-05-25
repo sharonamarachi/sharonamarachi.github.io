@@ -110,14 +110,14 @@ max-width: fit-content;
 }
 
 .home-detail h1:nth-child(2) {
-overflow: hidden;
-white-space: nowrap;
-border-right: 5px solid;
-width: 0;
-animation: typing;
-animation: typing 1s steps(25, end) forwards, blink-caret .75s step-end infinite;
-animation-delay: 0.75s;
-max-width: fit-content;
+  overflow: hidden;
+  white-space: nowrap; /* Wrap the text to the next line */
+  border-right: 5px solid;
+  width: 0;
+  animation: typing;
+  animation: typing 1s steps(25, end) forwards, blink-caret .75s step-end infinite;
+  animation-delay: 0.75s;
+  max-width: fit-content; /* Change max-width to a percentage of viewport width */
 }
 
 
@@ -129,7 +129,7 @@ max-width: fit-content;
 @keyframes blink-caret {
     from, to { border-color: transparent }
     50% { border-color: white; }
-  }
+}
 
 
 .home-detail p{
@@ -178,7 +178,8 @@ max-width: fit-content;
     margin-top: 5%;
     position: static;
     bottom: 40px;
-    width: 500px;
+    min-width: min-content;
+    max-width: 400px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -228,18 +229,8 @@ max-width: fit-content;
 
 /* --------------------Second Part-------------------------------- */
 
-.parallax-container {
-  display: flex;
-  min-height: 70vh;
-  flex-direction: column;
-  background-attachment: fixed;
-  background-position: center;
-  background-size: cover;
-  color: var(--color);
-  row-gap: 4rem;
-}
 
-.parallax-container2 {
+.container2 {
   background-color: rgb(230,245,248);
   padding: 100px 0px;
   width: 100%;
@@ -316,14 +307,21 @@ max-width: fit-content;
 
 /* -----------------Third Part----------------------------------- */
 
-.parallax-container3 {
-  flex-direction: row;
+.container3 {
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
   padding: 7rem 0;
   text-align: center;
   gap: 2em;
+  display: flex;
+  min-height: 70vh;
+  flex-direction: row column;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+  color: var(--color);
+  row-gap: 4rem;
 }
 
 .Portfolio{
