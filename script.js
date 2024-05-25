@@ -15,3 +15,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
     window.addEventListener('scroll', onScroll);
 });
+
+window.addEventListener('DOMContentLoaded', () => {
+    const nameElement = document.getElementById('name');
+    updateNameDisplay(nameElement);
+    window.addEventListener('resize', () => {
+        updateNameDisplay(nameElement);
+    });
+});
+
+function updateNameDisplay(element) {
+    if (window.innerWidth <= 800) {
+        element.innerHTML = "My Name is Sharon <br> Akachi-Kanu,";
+    } else {
+        element.innerHTML = "My Name is Sharon Akachi-Kanu,";
+    }
+}
