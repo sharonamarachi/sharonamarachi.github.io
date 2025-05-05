@@ -1,122 +1,645 @@
 <!DOCTYPE html>
-<html lang="en"> 
-    <head>
-        <title>sharonakachi-kanu</title>
-        <link rel="stylesheet" href="styles.css">
-        <script src="script.js"></script>
-        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-    </head>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sharon Akachi-Kanu - Portfolio</title>
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script src="script.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;500;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='%230073e6'/><text x='50%' y='65%' font-family='Arial' font-size='60' font-weight='bold' text-anchor='middle' fill='white'>S</text></svg>">
+        <style>
+        :root {
+            --primary-color: #00b2ca;
+            --secondary-color: #0073e6;
+            --dark-color: #1a2a3a;
+            --light-color: #e6f5f8;
+            --text-color: #333;
+            --background-color: #f8f9fb;
+            --card-bg: rgba(255, 255, 255, 0.9);
+            --transition-speed: 0.3s;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Inconsolata", monospace;
+        }
+
+        body {
+            background: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header Styles */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: var(--background-color);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: all var(--transition-speed) ease;
+        }
+
+        .header.scrolled {
+            padding: 1rem 5%;
+            background: var(--light-color);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo a {
+            font-size: 1.8rem;
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 700;
+            transition: color var(--transition-speed);
+        }
+
+        .logo a:hover {
+            color: var(--primary-color);
+        }
+
+        .navbar {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .navbar a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.2rem;
+            position: relative;
+            transition: color var(--transition-speed);
+        }
+
+        .navbar a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--primary-color);
+            transition: width var(--transition-speed);
+        }
+
+        .navbar a:hover {
+            color: var(--primary-color);
+        }
+
+        .navbar a:hover::after {
+            width: 100%;
+        }
+
+        /* Hamburger Menu for Mobile */
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: var(--dark-color);
+        }
+
+        /* Hero Section */
+        .home {
+            padding: 180px 10% 100px;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .home-detail h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        #name {
+            color: var(--primary-color);
+        }
+
+        .home-detail h2 {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 2rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .home-detail h2::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 3px;
+            bottom: -5px;
+            left: 0;
+            background: linear-gradient(90deg, var(--primary-color), transparent);
+        }
+
+        .home-detail p {
+            font-size: 1.2rem;
+            margin: 1.5rem 0 2.5rem;
+            max-width: 800px;
+            color: var(--text-color);
+        }
+
+        .btn-box {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .btn-box a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.8rem 1.8rem;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 2rem;
+            font-weight: 500;
+            font-size: 1.1rem;
+            text-decoration: none;
+            transition: all var(--transition-speed);
+            box-shadow: 0 4px 15px rgba(0, 178, 202, 0.3);
+        }
+
+        .btn-box a:hover {
+            background: var(--secondary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 178, 202, 0.4);
+        }
+
+        .social-media {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .social-media p {
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .social-media a {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: white;
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            transition: all var(--transition-speed);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .social-media a:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        /* Work/Skills Section */
+        .container2 {
+            background: var(--light-color);
+            padding: 6rem 10%;
+            width: 100%;
+        }
+
+        .main {
+            display: flex;
+            flex-direction: column;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--dark-color);
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 4px;
+            bottom: -10px;
+            left: 0;
+            background: var(--primary-color);
+        }
+
+        .work-experience, .skills-section {
+            margin-bottom: 4rem;
+        }
+
+        .company {
+            margin-bottom: 2rem;
+        }
+
+        .company h3 {
+            font-size: 1.5rem;
+        }
+
+        .company a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color var(--transition-speed);
+            font-size: 1rem;
+        }
+
+        .company a:hover {
+            color: rgb(26, 170, 232);
+            text-decoration: none;
+        }
+
+        .company ul {
+            margin-bottom: 3rem;
+            margin-top: 1rem;
+            margin-left: 1.9rem;
+        }
+
+        .company li {
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .skill-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: transform var(--transition-speed);
+        }
+
+        .skill-item i {
+            font-size: 3.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+            transition: all var(--transition-speed);
+        }
+
+        .skill-item span {
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .skill-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .skill-item:hover i {
+            color: var(--primary-color);
+            transform: scale(1.1);
+        }
+
+        /* Portfolio/Blog Section */
+        .container3 {
+            padding: 6rem 10%;
+            width: 100%;
+            background: var(--background-color);
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transition: all var(--transition-speed);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark-color);
+        }
+
+        .card p {
+            margin-bottom: 1.5rem;
+            color: var(--text-color);
+            flex-grow: 1;
+        }
+
+        .card a {
+            display: inline-block;
+            padding: 0.7rem 1.5rem;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all var(--transition-speed);
+            align-self: flex-start;
+        }
+
+        .card a:hover {
+            background: var(--secondary-color);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-color);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            font-size: 1rem;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in {
+            animation: fadeIn 1s ease forwards;
+        }
+
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .home {
+                padding: 150px 5% 80px;
+            }
+            .container2, .container3 {
+                padding: 5rem 5%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+                z-index: 1001;
+            }
+            
+            .navbar {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                height: 100vh;
+                background: var(--light-color);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                transition: right 0.5s ease;
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            }
+            
+            .navbar.active {
+                right: 0;
+            }
+            
+            .btn-box {
+                flex-direction: column;
+                width: 100%;
+            }
+            
+            .btn-box a {
+                width: 100%;
+                text-align: center;
+            }
+            
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .home {
+                padding: 120px 5% 60px;
+            }
+            
+            .home-detail h1 {
+                font-size: 2.2rem;
+            }
+            
+            .home-detail h2 {
+                font-size: 1.3rem;
+            }
+            
+            .home-detail p {
+                font-size: 1rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
 <body>
-    <header class = "header">
-        <div class = "logo"> 
-            <a href="#"> Sharon's Portfolio.</a>
+    <header class="header">
+        <div class="logo"> 
+            <a href="#">Sharon's Portfolio</a>
         </div>
-        <nav class="navbar"> 
-            <a href="#Home" class="home-link"> Home</a>
-            <a href="#About"> Work/Skills</a>
-            <a href="#Portfolio"> Blog</a>
+        
+        <div class="menu-toggle">
+            <i class='bx bx-menu'></i>
+        </div>
+        
+        <nav class="navbar">
+            <a href="#Home" class="home-link">Home</a>
+            <a href="#About">Work/Skills</a>
+            <a href="#Portfolio">Blog</a>
         </nav>
     </header>
-    <section id = "Home" class = " home">
-        <div class = "home-detail">
-            <h1>Hi  There!</h1>
-            <h1 id="name">My Name is Sharon,</h1>
-            <h2>Welcome To My Digtal Garden</h2>
-            <p> 
+    
+    <section id="Home" class="home">
+        <div class="home-detail">
+            <h1 class="fade-in">Hi There!</h1>
+            <h1 id="name" class="fade-in delay-1">My Name is Sharon,</h1>
+            <h2 class="fade-in delay-2">Welcome To My Digital Garden</h2>
+            <p class="fade-in delay-2"> 
                 I'm a programmer and computer science student at the University of Limerick. 
                 I love exploring new technologies and 3D printing. 
                 I aim to help build tools that make processing and handling data more efficient for a wider audience. 
                 When I'm not coding or working on assignments or projects, I enjoy reading, watching new series, or traveling to new cities with my friends and family. 
                 I believe that each experience offers me the opportunity to enhance my skills and embrace new challenges. 
                 I am committed to pushing the boundaries of my potential and becoming the best version of myself.
-              <br> This website serves as my digital garden, a space where I share my learnings and document my professional journey.</p>
-            <div class="btn-box">
-                <a href="https://ulcampus-my.sharepoint.com/:b:/g/personal/22360247_studentmail_ul_ie/EbQxRcF6UD5ChgH5IR3XAlABAhoFbTvs64H4C3aikv_6sA?e=WWMCbL">Download Resume/CV</a>
+              <br><br>This website serves as my digital garden, a space where I share my learnings and document my professional journey.</p>
+              
+            <div class="btn-box fade-in delay-3">
+              <a href="Sharon Akachi-Kanu CV.pdf" target="_blank">
+                    <i class='bx bx-download'></i> Download Resume/CV
+                </a>
+                <a href="#About" class="secondary-btn">
+                    View My Work
+                </a>
             </div>
-            <div class="social-media">
-              <p> <br> Get to know me:</p>
-                <a href="https://www.linkedin.com/in/sharon-akachi-kanu-68011722a/" target="_blank"> <i class='bx bxl-linkedin'></i></a>
-                <a href="mailto:sakachikanu@gmal.com" target="_blank"> <i class='bx bxl-gmail'></i></a>
-                <a href="https://github.com/sharonamarachi" target="_blank"> <i class='bx bxl-github'></i></a>
-            </div>
-        </div>
-    </section>
-
-    <section id = "About" class = "container2">
-        <div class = "main">
-          <!-- <img src="https://media.licdn.com/dms/image/D4D03AQEEXRkm34uc_w/profile-displayphoto-shrink_800_800/0/1663426644973?e=2147483647&v=beta&t=O2GYSevS5Fl3ONZwOuJgmlZ1XKNJcrrGrbpy6y67Zwg" alt="Error 404" width="700" height="700" > -->
-          <div class = "work-text"> 
-            <h1> Work Experience</h1>
-            <a href="https://pwc.com"> PwC</a> 
-            <br><br>
-            <li>
-              Developed a To-do web application using the ABP framework
-            </li>
-            <li>
-              Utilized ABP's framework to implement features like task creation, editing, and deletion.
-            </li>
-            <li>
-              Utilized Azure Data Studio for efficient database management, querying, and visualization.       
-            </li>
-            <li>
-              Worked in team on a research project on cloud transformation.
-            </li>
-            <br>
-
-            <a href="https://www.aciworldwide.com"> ACI Worldwide (present)</a>
-            <br><br>
-            <li>
-              Ensuring real-time payment software solutions that enable corporations to process and manage digital payments, power omni-commerce payments, present and process bill payments, and manage fraud and risk.
-            </li>
-          
-
-            <h1> Skills</h1>
             
-            <a href="#" class="skill-icon"><i class='bx bxl-java'></i></a>
-            <a href="#" class="skill-icon"><i class='bx bxl-html5'></i></a>
-            <a href="#" class="skill-icon"><i class='bx bxl-css3'></i></a>
-            <a href="#" class="skill-icon"><i class='bx bxl-python'></i></a>
-            <a href="#" class="skill-icon"><i class='bx bxl-javascript'></i></a>
-            <a href="#" class="skill-icon"><i class='bx bxl-c-plus-plus'></i></a>
-           </div>
-        </div>
-    </section>
-    
-    <section id = "Portfolio" class=" container3">
-        <h1 class = "Portfolio">Posts</h1>
-        <div class="card">
-          <div class="card-img"></div>
-          <h3>3D Model of Volkswagen Beetle</h3>
-            <p> As a modeling project, I decided to try out a new and advanced CAD program, 3Ds Max. Compared to my last experience with Fusion 360 and 123D design, 3Ds Max is like the cherry on top and the most advanced CAD program I have used to date. 
-            To learn how to use the tools, I did a mix of trial and error and watching YouTube videos. Using the tools I learned, I created my favorite vintage car, at least it was before I tried modeling it, the Volkswagen Beetle.</p>
-            <a href="https://ulcampus-my.sharepoint.com/:v:/g/personal/22360247_studentmail_ul_ie/EeFwO7cjCfFOvpGgXMFVVF4BtT2-xyGBnW--cUYCUepMiQ?e=UMvsn9&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D" target="_blank"> 
-                Learn more</a>
-        </div>
-        <div class="card">
-          <h3>The Future of AI: Hopes, Concerns and Challenges (Paper)</h3>
-            <p> The world is changing rapidly with new devices and systems being invented daily. 
-                Artificial intelligence (AI), which can think and solve problems like humans, is becoming more common. 
-                AI benefits society in many ways, such as helping teachers in education and supporting doctors and nurses in healthcare. 
-                It can handle simple, time-consuming tasks, allowing professionals to focus on more critical aspects of their jobs. However, as AI advances, there are growing concerns about job security, with people fearing that robots might replace them and make their roles obsolete.</p>
-            <a href="AI_project.html" target="_blank">Learn more</a>
-        </div>
-        <div class="card">
-          <h3>Class Scheduler (GitHub)</h3>
-            <p>Class Scheduler Application is a TCP Client-Server project which comprises two applications: a GUI-based client and a console-based server, communicating via TCP protocol. </p>
-            <a href="https://github.com/sharonamarachi/Class-Scheduler-Application" target="_blank">Learn more</a>
-        </div>
-        <div class="card">
-          <h3>Student-Records-Systems (GitHub)</h3>
-            <p>A student records system for the University of Limerick. 
-                The system is able to store grades, calculates QCA, and identifies students not meeting academic requirments (pass/fail based for grades and QCA). 
-                In addition it allows students to view transcripts and for the faculty to submit and access results, and lastly departments to review student progression. 
-            </p>
-            <a href="https://github.com/sharonamarachi/Student-Records-Systems" target="_blank">Learn more</a>
+            <div class="social-media fade-in delay-3">
+                <p>Get to know me:</p>
+                <a href="https://www.linkedin.com/in/sharon-akachi-kanu-68011722a/" target="_blank" aria-label="LinkedIn"> 
+                    <i class='bx bxl-linkedin'></i>
+                </a>
+                <a href="mailto:sakachikanu@gmail.com" target="_blank" aria-label="Email"> 
+                    <i class='bx bxl-gmail'></i>
+                </a>
+                <a href="https://github.com/sharonamarachi" target="_blank" aria-label="GitHub"> 
+                    <i class='bx bxl-github'></i>
+                </a>
+            </div>
         </div>
     </section>
 
+    <section id="About" class="container2">
+        <div class="main">
+            <h2 class="section-title">Work Experience & Skills</h2>
+            
+            <div class="work-experience">
+                <div class="company">
+                    <h3>Software Engineer Intern</h3>
+                    <a href="https://pwc.com" target="_blank">PwC</a>
+                    <ul>
+                        <li>Developed a To-do web application using the ABP framework</li>
+                        <li>Utilized ABP's framework to implement features like task creation, editing, and deletion</li>
+                        <li>Utilized Azure Data Studio for efficient database management, querying, and visualization</li>
+                        <li>Worked in team on a research project on cloud transformation</li>
+                    </ul>
+                </div>
+                
+                <div class="company">
+                    <h3>Software Engineer</h3>
+                    <a href="https://www.aciworldwide.com" target="_blank">ACI Worldwide</a>
+                    <ul>
+                        <li>Ensuring real-time payment software solutions that enable corporations to process and manage digital payments</li>
+                        <li>Power omni-commerce payments, present and process bill payments</li>
+                        <li>Manage fraud and risk in payment systems</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="skills-section">
+                <h3 class="section-title" style="font-size: 2rem;">Technical Skills</h3>
+                <div class="skills-container">
+                    <div class="skill-item">
+                        <i class='bx bxl-java'></i>
+                        <span>Java</span>
+                    </div>
+                    <div class="skill-item">
+                        <i class='bx bxl-python'></i>
+                        <span>Python</span>
+                    </div>
+                    <div class="skill-item">
+                        <i class='bx bxl-javascript'></i>
+                        <span>JavaScript</span>
+                    </div>
+                    <div class="skill-item">
+                        <i class='bx bxl-html5'></i>
+                        <span>HTML5</span>
+                    </div>
+                    <div class="skill-item">
+                        <i class='bx bxl-css3'></i>
+                        <span>CSS3</span>
+                    </div>
+                    <div class="skill-item">
+                        <i class='bx bxl-c-plus-plus'></i>
+                        <span>C++</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
     
+    <section id="Portfolio" class="container3">
+        <h2 class="section-title">Recent Projects & Posts</h2>
+        
+        <div class="portfolio-grid">
+            <div class="card fade-in">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/VW_K%C3%A4fer_Baujahr_1966.jpg/560px-VW_K%C3%A4fer_Baujahr_1966.jpg" alt="Volkswagen Beetle 3D Model" class="card-img">
+                <div class="card-content">
+                    <h3>3D Model of Volkswagen Beetle</h3>
+                    <p>As a modeling project, I decided to try out a new and advanced CAD program, 3Ds Max. Compared to my last experience with Fusion 360 and 123D design, 3Ds Max is like the cherry on top and the most advanced CAD program I have used to date.</p>
+                    <a href="https://ulcampus-my.sharepoint.com/:v:/g/personal/22360247_studentmail_ul_ie/EeFwO7cjCfFOvpGgXMFVVF4BtT2-xyGBnW--cUYCUepMiQ?e=UMvsn9&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D" target="_blank">View Project</a>
+                </div>
+            </div>
+            
+            <div class="card fade-in delay-1">
+                <div class="card-content">
+                    <h3>The Future of AI: Hopes, Concerns and Challenges</h3>
+                    <p>The world is changing rapidly with new devices and systems being invented daily. Artificial intelligence (AI), which can think and solve problems like humans, is becoming more common. AI benefits society in many ways, but there are growing concerns about job security and ethical implications.</p>
+                    <a href="AI project.pdf" target="_blank">Read Paper</a>
+                </div>
+            </div>
+            
+            <div class="card fade-in delay-2">
+                <div class="card-content">
+                    <h3>Class Scheduler Application</h3>
+                    <p>Class Scheduler Application is a TCP Client-Server project which comprises two applications: a GUI-based client and a console-based server, communicating via TCP protocol. Designed to help students and faculty manage course schedules efficiently.</p>
+                    <a href="https://github.com/sharonamarachi/Class-Scheduler-Application" target="_blank">View on GitHub</a>
+                </div>
+            </div>
+            
+            <div class="card fade-in delay-3">
+                <div class="card-content">
+                    <h3>Student Records System</h3>
+                    <p>A student records system for the University of Limerick. The system stores grades, calculates QCA, and identifies students not meeting academic requirements. It allows students to view transcripts and faculty to submit/access results.</p>
+                    <a href="https://github.com/sharonamarachi/Student-Records-Systems" target="_blank">View on GitHub</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <p>&copy; 2023 Sharon Akachi-Kanu. All rights reserved.</p>
+        <p>Designed & Built with ❤️ by Sharon</p>
+    </footer>
 
 </body>
 </html>
